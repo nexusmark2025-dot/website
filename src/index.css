@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Base Reset ─────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-white text-brand-charcoal font-sans;
+    line-height: 1.6;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  a {
+    @apply text-inherit no-underline;
+  }
+}
+
+/* ─── Scroll-reveal utility (JS-driven) ─────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.96);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.reveal-scale.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* stagger delays */
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+/* ─── Custom components ──────────────────────────────────── */
+@layer components {
+
+  /* Buttons */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 bg-brand-black text-white text-sm font-semibold
+           rounded-full transition-all duration-200 hover:bg-brand-charcoal hover:scale-[1.02]
+           active:scale-[0.98] cursor-pointer select-none;
+  }
+
+  .btn-whatsapp {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 bg-whatsapp text-white text-sm font-semibold
+           rounded-full transition-all duration-200 hover:bg-green-500 hover:scale-[1.02]
+           active:scale-[0.98] cursor-pointer select-none;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 bg-transparent text-brand-black text-sm
+           font-semibold rounded-full border-2 border-brand-black transition-all duration-200
+           hover:bg-brand-black hover:text-white active:scale-[0.98] cursor-pointer select-none;
+  }
+
+  /* Cards */
+  .card {
+    @apply bg-white rounded-2xl border border-brand-border p-6 transition-all duration-300
+           hover:shadow-lg hover:-translate-y-1;
+  }
+
+  /* Section layout */
+  .section-padding {
+    @apply px-5 sm:px-8 lg:px-12 xl:px-20;
+  }
+
+  .section-py {
+    @apply py-16 md:py-24;
+  }
+
+  .container-max {
+    @apply max-w-7xl mx-auto;
+  }
+
+  /* Form inputs */
+  .form-input {
+    @apply w-full px-4 py-3 rounded-xl border border-brand-border bg-white text-brand-charcoal
+           text-sm placeholder-gray-400 outline-none transition-all duration-200
+           focus:border-brand-black focus:ring-2 focus:ring-brand-black/10;
+  }
+
+  .form-label {
+    @apply block text-sm font-medium text-brand-charcoal mb-1.5;
+  }
+}
+
+/* ─── Navbar scrolled state ─────────────────────────────── */
+.navbar-scrolled {
+  @apply bg-white/95 backdrop-blur-sm shadow-sm border-b border-brand-border;
+}
+
+/* ─── Mobile menu animation ─────────────────────────────── */
+.mobile-menu-enter {
+  animation: menuSlideDown 0.25s ease forwards;
+}
+
+@keyframes menuSlideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Floating WhatsApp button ──────────────────────────── */
+.whatsapp-float {
+  position: fixed;
+  bottom: 28px;
+  right: 24px;
+  z-index: 999;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25D366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 28px rgba(37, 211, 102, 0.45);
+}
+
+/* ─── Hero image placeholder ────────────────────────────── */
+.hero-img-placeholder {
+  background: linear-gradient(135deg, #f3f4f6 0%, #e9eaf0 100%);
+}
+
+/* ─── USP strip ─────────────────────────────────────────── */
+.usp-strip {
+  @apply border-y border-brand-border bg-white;
+}
+
+/* ─── How it works step number ──────────────────────────── */
+.step-number {
+  @apply text-6xl font-black text-brand-border leading-none select-none;
+}
+
+/* ─── Scrollbar (webkit) ─────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
